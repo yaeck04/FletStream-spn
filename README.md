@@ -1,8 +1,3 @@
-
-
----
-
-```markdown
 # 🎬 FletStream Pro
 
 ![Version](https://img.shields.io/badge/version-1.5.0-red)
@@ -140,4 +135,4 @@ Este proyecto es de código abierto y está disponible bajo la [Licencia MIT](LI
 
 ---
 Desarrollado con ❤️ usando Python y Flet.
-```
+
