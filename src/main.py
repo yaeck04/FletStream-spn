@@ -722,7 +722,7 @@ class MovieApp:
         pagination_container = ft.Container(content=self.pagination_controls, padding=ft.Padding(left=10, right=10, top=10, bottom=10), bgcolor="#141414")
 
         main_column = ft.Column([app_bar, filters_list, ft.Divider(height=1, color="transparent"), grid_container, pagination_container], expand=True, alignment="center")
-        self.page.add(main_column)
+        self.page.add(ft.SafeArea(content=main_column))
 
     def show_details(self, movie):
         self.page.clean()
@@ -791,7 +791,7 @@ class MovieApp:
              servers_title,
              servers_row,
              ft.Container(height=50)], scroll="auto", expand=True, horizontal_alignment="center")
-        self.page.add(main_column)
+        self.page.add(ft.SafeArea(content=main_column))
 
     # --- VISTA DE DESCARGAS (TABS) ---
     def show_downloads(self):
@@ -846,7 +846,7 @@ class MovieApp:
         )
 
         main_column = ft.Column([top_bar, ft.Divider(height=1, color="transparent"), tabs], expand=True)
-        self.page.add(main_column)
+        self.page.add(ft.SafeArea(content=main_column))
 
     # --- FLUJO DE DESCARGA ---
     def start_download_flow(self, movie, players_list):
@@ -872,13 +872,15 @@ class MovieApp:
             
         self.page.clean()
         self.page.add(
-            ft.Column([
-                ft.ProgressRing(color="#E50914", width=50, height=50),
-                ft.Text("Preparando descarga...", color="white", size=20),
-                ft.Text(f"Versión: {language}", color="#E50914", size=14),
-                ft.Text("Extrayendo enlace directo...", color="grey", size=12),
-                ft.Text(movie["titulo"], color="grey", size=12, max_lines=1, overflow="ellipsis")
-            ], alignment="center", horizontal_alignment="center", expand=True)
+            ft.SafeArea(
+                content=ft.Column([
+                    ft.ProgressRing(color="#E50914", width=50, height=50),
+                    ft.Text("Preparando descarga...", color="white", size=20),
+                    ft.Text(f"Versión: {language}", color="#E50914", size=14),
+                    ft.Text("Extrayendo enlace directo...", color="grey", size=12),
+                    ft.Text(movie["titulo"], color="grey", size=12, max_lines=1, overflow="ellipsis")
+                ], alignment="center", horizontal_alignment="center", expand=True)
+            )
         )
         self.page.update()
 
@@ -916,12 +918,14 @@ class MovieApp:
     def _show_loading_ui(self, movie_title):
         self.page.clean()
         self.page.add(
-            ft.Column([
-                ft.ProgressRing(color="#E50914", width=50, height=50),
-                ft.Text("Conectando y extrayendo...", color="white", size=20),
-                ft.Text("Por favor espere unos segundos.", color="grey", size=14),
-                ft.Text(f"Película: {movie_title}", color="grey", size=12, max_lines=1, overflow="ellipsis")
-            ], alignment="center", horizontal_alignment="center", expand=True)
+            ft.SafeArea(
+                content=ft.Column([
+                    ft.ProgressRing(color="#E50914", width=50, height=50),
+                    ft.Text("Conectando y extrayendo...", color="white", size=20),
+                    ft.Text("Por favor espere unos segundos.", color="grey", size=14),
+                    ft.Text(f"Película: {movie_title}", color="grey", size=12, max_lines=1, overflow="ellipsis")
+                ], alignment="center", horizontal_alignment="center", expand=True)
+            )
         )
         self.page.update()
 
@@ -945,17 +949,19 @@ class MovieApp:
         self.video_player = ftv.Video(playlist=[ftv.VideoMedia(video_url)], width=self.page.width, aspect_ratio=16 / 9, autoplay=True, show_controls=True, fill_color=ft.Colors.BLACK, fit="contain", volume=100, on_error=lambda e: print("Error video:", e.data))
         info_section = ft.Container(content=ft.Column([ft.Text(movie["titulo"], size=18, weight="bold", color="white"), ft.Text(movie.get("sinopsis", ""), size=13, color="grey")]), padding=20, bgcolor="#141414")
         page_content = ft.Column([top_bar, self.video_player, info_section], scroll="auto", expand=True)
-        self.page.add(page_content)
+        self.page.add(ft.SafeArea(content=page_content))
 
     def _show_error_ui(self, message):
         self.page.clean()
         self.page.add(
-            ft.Column([
-                ft.Icon(ft.Icons.ERROR_OUTLINE, color="red", size=50),
-                ft.Text("Error de Reproducción", size=20, color="white", weight="bold"),
-                ft.Text(message, size=14, color="grey"),
-                ft.ElevatedButton("Volver", on_click=lambda e: self.show_details(self.current_movie_detail))
-            ], alignment="center", horizontal_alignment="center", expand=True)
+            ft.SafeArea(
+                content=ft.Column([
+                    ft.Icon(ft.Icons.ERROR_OUTLINE, color="red", size=50),
+                    ft.Text("Error de Reproducción", size=20, color="white", weight="bold"),
+                    ft.Text(message, size=14, color="grey"),
+                    ft.ElevatedButton("Volver", on_click=lambda e: self.show_details(self.current_movie_detail))
+                ], alignment="center", horizontal_alignment="center", expand=True)
+            )
         )
 
     # --- EVENTOS ---
