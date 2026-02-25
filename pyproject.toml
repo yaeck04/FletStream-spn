@@ -17,8 +17,8 @@ dependencies = [
 ]
 
 [tool.flet]
-org = "yae.ppl"
-product = "contadorPPL-admin"
+org = "yae.flet"
+product = "FletStream"
 company = "PPL"
 copyright = "Copyright (C) 2026 by Flet"
 
