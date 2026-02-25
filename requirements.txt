@@ -1,0 +1,6 @@
+flet==0.80.1
+requests
+flet-toast
+beautifulsoup4
+urllib3
+flet-video

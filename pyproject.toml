@@ -1,0 +1,37 @@
+[project]
+name = "FletStream"
+version = "1.5.0"
+description = "Aplicación de streaming y descargas con Flet"
+readme = "README.md"
+requires-python = ">=3.9"
+authors = [
+    { name = "Yosbel Alba Estrada", email = "khloealba932@gmail.com" }
+]
+dependencies = [
+  "flet==0.80.1",
+  "requests",
+  "flet-toast",
+  "beautifulsoup4",     # Necesario para BeautifulSoup (bs4)
+  "urllib3",            # Necesario para el manejo de conexiones
+  "flet-video"          # Necesario para el reproductor de video
+]
+
+[tool.flet]
+org = "yae.ppl"
+product = "contadorPPL-admin"
+company = "PPL"
+copyright = "Copyright (C) 2026 by Flet"
+
+[tool.flet.app]
+path = "src"
+
+[tool.uv]
+dev-dependencies = [
+    "flet[all]==0.80.1"
+]
+
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.group.dev.dependencies]
+flet = {extras = ["all"], version = "0.80.1"}
