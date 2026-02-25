@@ -40,7 +40,7 @@ Cuenta con un potente **gestor de descargas**, un **extractor de enlaces robusto
 1.  **Clona el repositorio:**
     ```bash
     git clone https://github.com/yaeck04/FletStream-spn.git
-    cd FletStream
+    cd FletStream-spn
     ```
 
 2.  **Crea un entorno virtual (Recomendado):**
