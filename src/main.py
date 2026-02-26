@@ -24,7 +24,14 @@ urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 # --- CONFIGURACIÓN ---
 ITEMS_PER_PAGE = 24
 POSTER_DIR = "posters"
-DOWNLOAD_DIR = "downloads"
+
+# Aqui defino la carpeta donde se descargara segun el sistema usado
+if sys.platform.startswith("linux") and "ANDROID_STORAGE" in os.environ:
+    DOWNLOAD_DIR = "/sdcard/Download/"
+else:
+    DOWNLOAD_DIR = "downloads"
+#DOWNLOAD_DIR = "downloads"
+    
 HISTORIAL_FILE = "historial_descargas.json"
 LOG_FILE = "descargas_log.txt"
 MAX_CONCURRENT_DOWNLOADS = 2
