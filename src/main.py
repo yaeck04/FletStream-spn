@@ -12,6 +12,7 @@ import threading
 import queue
 import asyncio
 from datetime import datetime
+import sys
 
 # --- NUEVAS IMPORTACIONES PARA EL EXTRACTOR Y DESCARGAS ---
 import requests
